@@ -10,8 +10,6 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 import models
 from flops import *
-from adamp import SGDP
-import timm
 
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch Slimming CIFAR training')
@@ -65,8 +63,8 @@ class L1L2Optimizer(optim.Optimizer):
 torch.manual_seed(args.seed)
 torch.cuda.manual_seed(args.seed)
 if args.num_classes == 10:
-    train_set = datasets.CIFAR10(args.data_path, train=True, download=True)
-    test_set = datasets.CIFAR10(args.data_path, train=False, download=True)
+    train_set = datasets.CIFAR10(args.data_path, train=True)
+    test_set = datasets.CIFAR10(args.data_path, train=False)
 else:
     train_set = datasets.CIFAR100(args.data_path, train=True)
     test_set = datasets.CIFAR100(args.data_path, train=False)

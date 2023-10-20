@@ -100,5 +100,3 @@ If you find this code useful, please cite the following paper:
 For CIFAR, our code is based on https://github.com/Eric-mingjie/rethinking-network-pruning
 
 For ImageNet, our code is based on https://github.com/pytorch/examples/tree/master/imagenet
-# PFF-L1L2-95-5
-# PFF-L1L2-95-5

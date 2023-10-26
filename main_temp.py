@@ -158,26 +158,17 @@ print("Best accuracy: " + str(best_prec1))
 history_score[-1][0] = best_prec1
 np.savetxt(os.path.join(args.save, 'train_record.txt'), history_score, fmt='%10.5f', delimiter=',')
 ##############pruning filter in filter without finetuning#################
-# if args.sr and args.threshold:
-#     # model.load_state_dict(torch.load(os.path.join(args.save, 'best.pth')))
-#     model=torch.load(os.path.join(args.save, 'best.pth'))
-#     model.prune(args.threshold)
-#     test()
-#     # print(model)
-#     model_int8 = torch.quantization.quantize_dynamic(
-#     model,  # the original model
-#    # a set of layers to dynamically quantize
-#     dtype=torch.qint8) 
-#     torch.save(model_int8, os.path.join(args.save, 'pruned.pth'))
-#     print_model_param_nums(model_int8)
-#     count_model_param_flops(model_int8)
 if args.sr and args.threshold:
     # model.load_state_dict(torch.load(os.path.join(args.save, 'best.pth')))
     model=torch.load(os.path.join(args.save, 'best.pth'))
     model.prune(args.threshold)
     test()
     # print(model)
-    torch.save(model, os.path.join(args.save, 'pruned.pth'))
-    print_model_param_nums(model)
-    count_model_param_flops(model)
+    model_int8 = torch.quantization.quantize_dynamic(
+    model,  # the original model
+   # a set of layers to dynamically quantize
+    dtype=torch.qint8) 
+    torch.save(model_int8, os.path.join(args.save, 'pruned.pth'))
+    print_model_param_nums(model_int8)
+    count_model_param_flops(model_int8)
 #########################################################

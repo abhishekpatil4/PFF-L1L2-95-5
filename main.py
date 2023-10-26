@@ -11,6 +11,8 @@ from torchvision import datasets, transforms
 import models
 from flops import *
 
+
+
 # Training settings
 parser = argparse.ArgumentParser(description='PyTorch Slimming CIFAR training')
 parser.add_argument('--data_path', type=str, default='../data')
@@ -161,7 +163,7 @@ if args.sr and args.threshold:
     model=torch.load(os.path.join(args.save, 'best.pth'))
     model.prune(args.threshold)
     test()
-    print(model)
+    # print(model)
     model_int8 = torch.quantization.quantize_dynamic(
     model,  # the original model
    # a set of layers to dynamically quantize
